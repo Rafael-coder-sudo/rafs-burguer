@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { mask} from "remask";
 import InputLabel from '../utils/InputLabel'
+import {formatNumber} from '../../utils/functions'
 
 const FormSave =
   ({
@@ -36,11 +36,11 @@ const FormSave =
     const [cep, setCep] = useState('')
 
     const maskCel = (e) => {
-      setCel(mask(e.target.value, ['99999-9999']))
+      setCel(e.target.value)
       setValue('cel', e.target.value)
     }
     const maskCep = (e) => {
-      setCep(mask(e.target.value, ['99999-999']))
+      setCep(e.target.value)
       setValue('cep', e.target.value)
     }
 
@@ -122,7 +122,7 @@ FormSave.defaultProps = {
     type:'text',
     id: 'endereco',
     name: 'endereco',
-    required: true
+    required: true,
   },
   cepInputProps: {
     type:'text',

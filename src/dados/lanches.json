@@ -1,0 +1,34 @@
+{
+  "dataApi": {
+    "lanches": [
+      {
+        "id": 1,
+        "img": "xbacon",
+        "name": "X-Bacon",
+        "ingredients": "Pão, hambúrguer, 2 fatias de queijo prato, bacon, agrião, cebola roxa e molho ranch.",
+        "price": 21.99
+      },
+      {
+        "id": 2,
+        "img": "xsalada",
+        "name": "X-Salada",
+        "ingredients": "Hambúrguer bovino, milho verde, ervilha, presunto, queijo, vinagrete, alface, tomate e batata palha.",
+        "price": 22.99
+      },
+      {
+        "id": 3,
+        "img": "xcalabresa",
+        "name": "X-Calabresa",
+        "ingredients": "Hambúrguer bovino, calabresa, milho verde, ervilha, presunto, queijo, vinagrete, alface, tomate e batata palha.",
+        "price": 23.99
+      },
+      {
+        "id": 4,
+        "img": "xtudo",
+        "name": "X-Tudo",
+        "ingredients": "Hambúrguer, frango, ovo, bacon, calabresa, cheddar, catupiry, presunto, queijo, vinagrete, milho verde, ervilha, alface, tomate e batata palha.",
+        "price": 21.99
+      }
+    ]
+  }
+}

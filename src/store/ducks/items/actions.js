@@ -27,9 +27,16 @@ export const setClient = query => {
   }
 }
 
+export const cancel = () => {
+  return {
+    type: types.CANCEL,
+  }
+}
+
 export default {
   setItem,
   removeItem,
   nextEtapa,
-  setClient
+  setClient,
+  cancel
 }

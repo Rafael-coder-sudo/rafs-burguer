@@ -26,10 +26,18 @@ export function* setClient(payload) {
   }
 }
 
+export function* cancel(){
+  sessionStorage.removeItem('cli')
+  sessionStorage.removeItem('price')
+  sessionStorage.removeItem('list')
+
+}
+
 
 
 export default function* wacthItems() {
   yield takeLatest(types.NEXT_ETAPA, nextEtapa)
   yield takeLatest(types.SET_CLIENT, setClient)
+  yield takeLatest(types.CANCEL, cancel)
 
 }

@@ -11,7 +11,8 @@ const FormSave =
     celularInputProps,
     cepInputProps,
     enderecoInputProps,
-    numInputProps
+    numInputProps,
+    oncancel
   }) => {
 
 
@@ -73,7 +74,7 @@ const FormSave =
             )}
         />
         <div className="text-center">
-          <button className="btn btn-danger btn-lg mr-2">Cancelar</button>
+          <button className="btn btn-danger btn-lg mr-2" onClick={() => oncancel}>Cancelar</button>
           <button className="btn btn-success btn-lg " onClick={() =>  window.location='#finnaly'}>Continuar</button>
         </div>
       </form>

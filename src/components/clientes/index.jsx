@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import InputMask from "react-input-mask";
 
+import { mask} from "remask";
 import InputLabel from '../utils/InputLabel'
 
 const FormSave =
@@ -12,19 +12,46 @@ const FormSave =
     cepInputProps,
     enderecoInputProps,
     numInputProps,
-    oncancel
+    oncancel,
+    onBuscCep,
+    endereco
   }) => {
 
 
-    const { register, handleSubmit, setValue, errors } = useForm();
+   
+
 
     const onSubmitForm = data => {
+      if(endereco.logradouro){
+        setValue('endereco', `${endereco.logradouro}-${endereco.bairro}-${endereco.localidade}`)
+      }
+      console.log(data)
       let values = data;
       submit(values);
+      
+      window.location='#finnaly'
     };
 
+    const [cel, setCel] = useState('')
+    const [cep, setCep] = useState('')
 
+    const maskCel = (e) => {
+      setCel(mask(e.target.value, ['99999-9999']))
+      setValue('cel', e.target.value)
+    }
+    const maskCep = (e) => {
+      setCep(mask(e.target.value, ['99999-999']))
+      setValue('cep', e.target.value)
+    }
 
+    const { register, handleSubmit, setValue, errors } = useForm();
+    
+    const isValid = () => {
+      if(endereco.logradouro){
+        setValue('endereco', `${endereco.logradouro}-${endereco.bairro}-${endereco.localidade}`)
+      }
+
+    }
 
     return (
       <form onSubmit={handleSubmit(onSubmitForm)}>
@@ -36,28 +63,25 @@ const FormSave =
               'nome',
               e.target.value,
             )}
+            {...nameInputProps}
         />
         <InputLabel
           label="Celular"
           {...celularInputProps}
-          onChange={e =>
-            setValue(
-              'celular',
-              e.target.value,
-            )}
+          value={cel}
+          onChange={e => maskCel(e)}
         />
         <InputLabel
           label="CEP"
           {...cepInputProps}
-          onChange={e =>
-            setValue(
-              'cep',
-              e.target.value,
-            )}
+          value={cep}
+          onBlur= {(e) => onBuscCep(e)}
+          onChange={e => maskCep(e)}
         />
         <InputLabel
           label="Endereço"
           {...enderecoInputProps}
+          value={endereco.logradouro}
           onChange={e =>
             setValue(
               'endereco',
@@ -74,8 +98,8 @@ const FormSave =
             )}
         />
         <div className="text-center">
-          <button className="btn btn-danger btn-lg mr-2" onClick={() => oncancel}>Cancelar</button>
-          <button className="btn btn-success btn-lg " onClick={() =>  window.location='#finnaly'}>Continuar</button>
+          <button className="btn btn-danger btn-lg mr-2" onClick={oncancel }>Cancelar</button>
+          <button className="btn btn-success btn-lg " type="submit" onClick={() => isValid()}>Continuar</button>
         </div>
       </form>
     )
@@ -85,27 +109,32 @@ FormSave.defaultProps = {
   nameInputProps:{
     type:'text',
     id: 'nome',
-    name: 'nome'
+    name: 'nome',
+    required: true
   },
   celularInputProps: {
     type:'text',
     id: 'celular',
-    name: 'celular'
+    name: 'celular',
+    required: true
   },
   enderecoInputProps: {
     type:'text',
     id: 'endereco',
-    name: 'endereco'
+    name: 'endereco',
+    required: true
   },
   cepInputProps: {
     type:'text',
     id: 'cep',
-    name: 'cep'
+    name: 'cep',
+    required: true
   },
   numInputProps: {
     type:'text',
     id: 'num',
-    name: 'num'
+    name: 'num',
+    required: true
   }
 }
 

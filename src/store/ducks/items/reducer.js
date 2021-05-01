@@ -3,7 +3,8 @@ import * as type from './types'
 
 const INITIAL_STATE = {
 	list: [],
-	price: 0
+	price: 0,
+	end: {}
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -19,6 +20,12 @@ const userReducer = (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				price: parseFloat((state.price - action.query).toFixed(2))
+			}
+		}
+		case type.SET_END: {
+			return {
+				...state,
+				end: action.data
 			}
 		}
 		default:

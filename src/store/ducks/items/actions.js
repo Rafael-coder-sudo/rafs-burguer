@@ -33,10 +33,26 @@ export const cancel = () => {
   }
 }
 
+export const onBuscCep = data => {
+  return {
+    type: types.ON_CEP,
+    data
+  }
+}
+
+export const setEnd = data => {
+  return {
+    type: types.SET_END,
+    data
+  }
+}
+
 export default {
   setItem,
   removeItem,
   nextEtapa,
   setClient,
-  cancel
+  cancel,
+  onBuscCep,
+  setEnd
 }

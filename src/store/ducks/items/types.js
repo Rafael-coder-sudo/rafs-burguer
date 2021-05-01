@@ -4,6 +4,8 @@ export const REMOVE_ITEM = 'item/REMOVE_ITEM'
 export const NEXT_ETAPA = 'item/NEXT_ETAPA'
 export const SET_CLIENT = 'item/SET_CLIENT'
 export const CANCEL = 'item/CANCEL'
+export const ON_CEP = 'item/ON_CEP'
+export const SET_END= 'item/SET_END'
 
 export default {
   SET_ITEM,
@@ -12,4 +14,6 @@ export default {
   NEXT_ETAPA,
   SET_CLIENT,
   CANCEL,
+  ON_CEP,
+  SET_END
 }

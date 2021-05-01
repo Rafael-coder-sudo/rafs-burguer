@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
 
+import { itemsActions } from '../../store/actions'
 
 import Page from '../../components/page/Page'
 import * as utils from '../../styles/utils'
+import { cancel } from '../../store/ducks/items/sagas'
 
 class Finally extends Component {
 
@@ -13,6 +16,11 @@ class Finally extends Component {
     const price = JSON.parse(sessionStorage.getItem('price'))
     const client = JSON.parse(sessionStorage.getItem('cli'))
 
+    const onCancel = () =>{
+      const { cancel} = this.props
+      cancel()
+      window.location = '/'
+    }
     const text = `Olá, sou ${client.nome} e gostaria de fazer um pedido:
     %0A${items.map((index) => `${index.name}-----${index.price}%0D` )}
     %0ATotal: ${price}%0A
@@ -41,7 +49,8 @@ class Finally extends Component {
 
             </utils.cardLanches>
             <div className="text-center pt-5">
-              <button className="btn btn-danger btn-lg mr-2">Cancelar</button>
+
+              <button className="btn btn-danger btn-lg mr-2" onClick={() => onCancel()}>Cancelar</button>
               <a href={
                 `https://api.whatsapp.com/send?phone=5511987234909&text=
                 ${text}`
@@ -57,6 +66,10 @@ class Finally extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+	return {
+    cancel: () => dispatch(itemsActions.cancel())
+	};
+};
 
-
-export default Finally
+export default connect(null, mapDispatchToProps)(Finally)

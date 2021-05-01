@@ -10,18 +10,22 @@ import Form from '../../components/clientes'
 
 class Cliente extends Component {
   render() {
+
     const oncancel = () => {
       const {cancel} = this.props
-      window.location='#/'
+      window.location = '/'
       cancel()
 
     }
-    const {setClient} = this.props
+    const {setClient, onBuscCep, end} = this.props
     return (
       <Page>
         <utils.TitleSession>Preencha seus dados</utils.TitleSession>
         <div className="p-5">
-          <Form submit={(data) => setClient(data)} oncancel={()=> oncancel()}/>
+          <Form submit={(data) => setClient(data)} 
+          oncancel={oncancel} 
+          onBuscCep={(e) => onBuscCep(e.target.value)}
+          endereco= {end}/>
         </div>
       </Page>
     )
@@ -30,14 +34,16 @@ class Cliente extends Component {
 
 const mapStateToProps = (state) => ({
   list: state.items.list,
-  total: state.items.price
+  total: state.items.price,
+  end: state.items.end
 })
 
 
 const mapDispatchToProps = dispatch => {
 	return {
     setClient: data => dispatch(itemsActions.setClient(data)),
-    cancel: () => dispatch(itemsActions.cancel())
+    cancel: () => dispatch(itemsActions.cancel()),
+    onBuscCep: data => dispatch(itemsActions.onBuscCep(data))
 	};
 };
 
